@@ -1,0 +1,49 @@
+<mat-toolbar>Persona</mat-toolbar>
+
+<router-outlet ></router-outlet>
+
+<div class="example-container mat-elevation-z8" *ngIf="route.children.length === 0">    
+
+
+    <div class="example-header">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar persona">
+        </mat-form-field>
+    </div>
+
+    <mat-table [dataSource]="dataSource" matSort>
+        
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.idPersona}} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="nombres">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.nombres}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="apellidos">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.apellidos}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <button mat-button color="primary" [routerLink]="['edicion', row.idPersona]">Actualizar</button>
+                <button mat-button color="accent" (click)="eliminar(row.idPersona)">Eliminar</button>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;">
+        </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
+
+<button mat-fab color="accent" style="float: right; margin-right: 20px" routerLink='/persona/nuevo' >
+    <mat-icon>create</mat-icon>
+</button>

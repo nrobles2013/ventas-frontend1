@@ -1,0 +1,28 @@
+<form class="example-container" [formGroup]="form" (ngSubmit)="operar()"  #espForm="ngForm">
+
+  <div [hidden]="true">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" required formControlName="id">
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nombres" required formControlName="nombres">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Apellidos" required formControlName="apellidos">
+  </mat-form-field>
+
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="espForm.invalid">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <button mat-raised-button color="accent" routerLink='/persona' type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button>
+</form>
+
+<br/>
